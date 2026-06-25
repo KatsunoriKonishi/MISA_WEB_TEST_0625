@@ -1,0 +1,592 @@
+/* ==========================================================================
+   Design System & Reset
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #1e293b;            /* 読みやすいモダンなダークグレー */
+    background-color: #ffffff; /* メイン背景を明るい白ベースに刷新 */
+    line-height: 1.8;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 2色ベース（青・オレンジ）を最高に引き立たせるライトモードパレット */
+:root {
+    --brand-black: #000000;    /* ロゴ同化用の完全な黒 */
+    --brand-blue: #005cf6;     /* 地球の鮮烈なプレミアムブルー */
+    --brand-orange: #ff5500;   /* 太陽の情熱オレンジ */
+    --brand-yellow: #ffcc00;   /* 太陽の輝きゴールドイエロー */
+    --bg-light-blue: #f0f6ff;  /* 背景用：爽快で薄い青 */
+    --bg-light-gray: #f8fafc;  /* 背景用：クリーンな薄いグレー */
+    --text-main: #0f172a;      /* メイン引き締め文字色 */
+    --text-muted: #64748b;     /* サブ文字色 */
+    --white: #ffffff;
+}
+
+/* ==========================================================================
+   １．ヘッダー（大型ロゴシームレス ＆ プレミアムナビ）
+   ========================================================================== */
+.main-header {
+    background-color: var(--brand-black); /* ★ロゴ背景を100%一体化させ枠線を消去 */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* ★大きめのロゴ画像を大迫力で配置 */
+.logo-img {
+    height: 140px; /* ★大きめの高級感あるサイズ */
+    width: auto;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(1.35) contrast(1.15); /* ロゴ内の紺色文字をクッキリ際立たせる補正 */
+}
+
+.logo-img:hover {
+    transform: scale(1.03) translateY(-2px);
+}
+
+.company-name {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    /* 青とオレンジのド派手なグラデーションテキスト */
+    background: linear-gradient(90deg, var(--brand-blue), var(--brand-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* ナビゲーション */
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-item {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+}
+
+/* ホバー時に美しく伸びるグラデーションアンダーライン */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brand-blue), var(--brand-orange));
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover { color: #ffffff; }
+.nav-item:hover::after { width: 100%; }
+
+/* ==========================================================================
+   ２．紹介文（ヒーローセクション：圧倒的な明るさと透明感）
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    padding: 150px 20px;
+    text-align: center;
+    /* 明るく派手な2色ベースのグラデーション */
+    background: linear-gradient(135deg, #e6f0ff 0%, #fff0e6 100%);
+    overflow: hidden;
+}
+
+.hero-light-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 20%, rgba(0, 92, 246, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 85, 0, 0.05) 0%, transparent 40%),
+                url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    opacity: 0.25;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.hero-tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: var(--brand-blue);
+    font-weight: 700;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.hero-title {
+    font-size: 4.8rem;
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: -1px;
+    margin-bottom: 35px;
+}
+
+.hero-text-block {
+    max-width: 850px;
+    margin: 0 auto 50px;
+    background: rgba(255, 255, 255, 0.8); /* トレンドのガラス風透過で最高に明るく */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 45px 50px;
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 45px rgba(0, 92, 246, 0.04);
+}
+
+.hero-text {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.hero-text-sub {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* 派手で目立つ流線型CTAボタン */
+.btn-cta {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--brand-blue), #0046c7);
+    color: var(--white);
+    padding: 22px 60px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(0, 92, 246, 0.25);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(90deg, var(--brand-orange), #e64d00);
+    box-shadow: 0 15px 35px rgba(255, 85, 0, 0.3);
+}
+
+/* ==========================================================================
+   ３．サービス内容（高級リゾート風ライトモダン）
+   ========================================================================== */
+.services-section {
+    padding: 150px 0;
+    background-color: var(--white); /* 白背景で明るくクリーンに */
+}
+
+.section-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 40px;
+}
+
+.service-card {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 55px 45px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.02);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-icon-wrapper {
+    font-size: 3.5rem;
+    margin-bottom: 25px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.service-card:hover { transform: translateY(-10px); }
+.card-blue:hover { border-color: var(--brand-blue); box-shadow: 0 20px 45px rgba(0, 92, 246, 0.06); }
+.card-orange:hover { border-color: var(--brand-orange); box-shadow: 0 20px 45px rgba(255, 85, 0, 0.06); }
+.card-gradient:hover { border-color: var(--brand-yellow); box-shadow: 0 20px 45px rgba(255, 204, 0, 0.06); }
+
+/* ==========================================================================
+   ５．プラン選択（大きめ表示 ＆ 爽快プライシングテーブル）
+   ========================================================================== */
+.plans-section {
+    background-color: var(--bg-light-blue); /* 明るく爽快なライトブルー背景 */
+    padding: 150px 0;
+}
+
+.plans-large-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(390px, 1fr)); /* 幅を大きめに確保 */
+    gap: 45px;
+    align-items: stretch;
+}
+
+/* 大きく見やすい、超美麗な大型プランカード */
+.plan-card {
+    background: var(--white);
+    border: 1px solid rgba(0, 92, 246, 0.08);
+    border-radius: 36px;
+    padding: 65px 45px; /* 余白を贅沢に大きく配置 */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 15px 40px rgba(0, 92, 246, 0.02);
+}
+
+/* おすすめ（船旅）カードへのド派手なハイライト */
+.plan-card.featured {
+    border: 3px solid var(--brand-orange);
+    box-shadow: 0 25px 55px rgba(255, 85, 0, 0.12);
+}
+
+.plan-badge {
+    position: absolute;
+    top: 35px;
+    right: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: var(--bg-light-blue);
+    color: var(--brand-blue);
+    padding: 6px 18px;
+    border-radius: 100px;
+}
+
+.plan-badge.gold {
+    background: var(--brand-orange);
+    color: var(--white);
+    box-shadow: 0 5px 15px rgba(255, 85, 0, 0.25);
+}
+
+.plan-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.plan-icon { font-size: 3.8rem; } /* アイコンを大きく */
+.plan-name { font-size: 2.1rem; font-weight: 900; color: var(--text-main); } /* タイトルを大きく */
+
+/* ★一番見せたい価格表記を圧倒的大文字で配置（見やすさ最優先） */
+.plan-price {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    margin-bottom: 35px;
+    color: var(--text-main);
+    border-bottom: 2px solid #edf2f7;
+    padding-bottom: 25px;
+}
+
+.plan-price .currency { font-size: 2rem; font-weight: 700; color: var(--brand-orange); }
+.plan-price .amount { font-size: 4.5rem; font-weight: 900; letter-spacing: -2px; line-height: 1; } /* 金額を強烈に巨大化 */
+.plan-price .tax { font-size: 1.1rem; color: var(--text-muted); font-weight: 700; }
+
+.plan-desc {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 55px;
+    margin-top: auto; /* ボタンを一番下に綺麗に揃える */
+}
+
+.plan-features li {
+    font-size: 1.1rem; /* 特徴リストも大きめで見やすく */
+    color: #334155;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.plan-features li::before {
+    content: '✓';
+    color: var(--brand-blue);
+    font-weight: 900;
+}
+.featured .plan-features li::before {
+    color: var(--brand-orange);
+}
+
+/* スタイリッシュで目立つ特大プラン選択ボタン */
+.btn-plan-select {
+    display: block;
+    text-align: center;
+    background: var(--bg-light-blue);
+    color: var(--brand-blue);
+    padding: 20px;
+    border-radius: 100px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.15rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 92, 246, 0.1);
+}
+
+.featured .btn-plan-select {
+    background: linear-gradient(90deg, var(--brand-orange), var(--brand-yellow));
+    color: var(--white);
+    border: none;
+    box-shadow: 0 8px 25px rgba(255, 85, 0, 0.25);
+}
+
+.plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0, 92, 246, 0.08);
+}
+
+.plan-card:not(.featured):hover .btn-plan-select {
+    background: var(--brand-blue);
+    color: var(--white);
+    box-shadow: 0 8px 25px rgba(0, 92, 246, 0.25);
+}
+
+.plan-card.featured:hover {
+    box-shadow: 0 30px 60px rgba(255, 85, 0, 0.25);
+}
+
+/* ==========================================================================
+   ４．お問い合わせ先（極上の明るいクリーンデザイン）
+   ========================================================================== */
+.contact-section {
+    background-color: var(--white);
+    padding: 150px 0;
+}
+
+.contact-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.info-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: var(--brand-blue);
+    font-weight: 700;
+    letter-spacing: 5px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.contact-headline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--text-main);
+    margin-bottom: 25px;
+}
+
+.contact-description {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 50px;
+}
+
+.brand-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.channel-box { display: flex; flex-direction: column; }
+.channel-label { font-size: 0.95rem; color: var(--text-muted); font-weight: 700; margin-bottom: 5px; }
+.channel-value { font-size: 1.3rem; font-weight: 700; color: var(--text-main); }
+
+/* 電話番号の圧倒的ハイライト */
+.channel-value.phone-highlight {
+    font-size: 3.3rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    color: var(--brand-blue);
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+
+.channel-sub { font-size: 0.9rem; color: var(--text-muted); }
+
+/* クリーンかつ高精度な入力パネル */
+.contact-form-panel {
+    background: var(--bg-light-gray);
+    padding: 55px;
+    border-radius: 36px;
+    border: 1px solid #edf2f7;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.02);
+}
+
+.clean-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.clean-form input,
+.clean-form textarea {
+    width: 100%;
+    padding: 16px;
+    background: var(--white);
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    color: var(--text-main);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.clean-form textarea { resize: none; }
+
+.clean-form input:focus,
+.clean-form textarea:focus {
+    outline: none;
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 4px rgba(0, 92, 246, 0.1);
+}
+
+/* 圧倒的な存在感を放つ送信ボタン */
+.clean-submit-btn {
+    width: 100%;
+    background: linear-gradient(90deg, var(--brand-blue), #0046c7);
+    color: var(--white);
+    padding: 20px;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0, 92, 246, 0.2);
+    transition: all 0.3s ease;
+}
+
+.clean-submit-btn:hover {
+    background: linear-gradient(90deg, var(--brand-orange), #e64d00);
+    box-shadow: 0 8px 25px rgba(255, 85, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   フッター
+   ========================================================================== */
+.main-footer {
+    background-color: var(--text-main);
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    padding: 35px;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Responsive（スマホ・タブレット完全レスポンシブ）
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .contact-container { grid-template-columns: 1fr; gap: 60px; }
+    .hero-title { font-size: 3.5rem; }
+}
+
+@media (max-width: 968px) {
+    .header-container { flex-direction: column; gap: 15px; padding: 15px; }
+    .logo-img { height: 110px; } /* 画面サイズに合わせて自動調整 */
+    .nav-links { gap: 25px; }
+}
+
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.5rem; }
+    .hero-text-block { padding: 35px 20px; }
+    .hero-text { font-size: 1.25rem; }
+    .section-title { font-size: 2.8rem; }
+    .services-grid, .plans-large-grid { grid-template-columns: 1fr; }
+    .plan-price .amount { font-size: 3.6rem; }
+    .contact-form-panel { padding: 35px 20px; }
+    .channel-value.phone-highlight { font-size: 2.4rem; }
+}
